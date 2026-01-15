@@ -243,7 +243,7 @@ anone-creator/
 |------|-----|
 | ハッシュ方式 | SHA-256 |
 | 条件 | `hash(challenge + nonce)` の先頭が指定数の `0` |
-| difficulty | 4〜5（調整可能） |
+| difficulty | **4**（初期値、必要に応じて調整） |
 | 有効期限 | 60秒 |
 | 使用回数 | 1回のみ |
 
@@ -266,11 +266,17 @@ anone-creator/
 - status
 - createdAt
 - finishedAt
+- **processingTimeMs**（FFmpeg処理時間、同時実行数調整のためのデータ収集用）
 
 ### 8.3 タイムアウト
 
 - FFmpeg実行：120秒
 - 超過時は強制終了し `failed` 扱い
+
+### 8.4 同時実行数
+
+- **初期値：1並列**
+- `processingTimeMs` の実データを収集後、必要に応じて調整
 
 ---
 
