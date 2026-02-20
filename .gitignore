@@ -1,0 +1,9 @@
+node_modules/
+dist/
+output/
+uploads/
+*.db
+*.db-journal
+.env
+server/assets/base-video.mp4
+build/public/

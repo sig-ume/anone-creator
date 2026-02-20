@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>あのね動画メーカー</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center justify-center p-4">
+  <div class="w-full max-w-lg mx-auto">
+    <h1 class="text-3xl font-bold text-center mb-2">あのね動画メーカー</h1>
+    <p class="text-gray-400 text-center mb-8 text-sm">
+      背景画像をアップロードして、オリジナル動画を作ろう
+    </p>
+
+    <!-- Upload Form -->
+    <div id="form-section">
+      <div
+        id="drop-zone"
+        class="border-2 border-dashed border-gray-600 rounded-xl p-8 text-center cursor-pointer hover:border-blue-500 transition-colors"
+      >
+        <div class="mb-4">
+          <svg class="mx-auto h-12 w-12 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <p class="text-gray-400 mb-2">画像をドラッグ＆ドロップ</p>
+        <p class="text-gray-500 text-sm">または クリックして選択</p>
+        <p class="text-gray-600 text-xs mt-2">JPG / PNG（最大25枚、各10MBまで）</p>
+        <input
+          type="file"
+          id="file-input"
+          accept="image/jpeg,image/png"
+          multiple
+          class="hidden"
+        >
+      </div>
+
+      <!-- Preview -->
+      <div id="preview-area" class="mt-4 grid grid-cols-5 gap-2 hidden"></div>
+
+      <!-- Image count -->
+      <p id="image-count" class="text-gray-500 text-sm mt-2 text-center hidden"></p>
+
+      <!-- Submit button -->
+      <button
+        id="submit-btn"
+        class="w-full mt-6 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-700 disabled:text-gray-500 text-white font-bold py-3 px-6 rounded-xl transition-colors disabled:cursor-not-allowed"
+        disabled
+      >
+        動画を生成する
+      </button>
+    </div>
+
+    <!-- Processing -->
+    <div id="processing-section" class="hidden text-center">
+      <div class="mb-6">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+      </div>
+      <p id="status-text" class="text-gray-300 text-lg">準備中...</p>
+      <p class="text-gray-500 text-sm mt-2">しばらくお待ちください</p>
+    </div>
+
+    <!-- Result -->
+    <div id="result-section" class="hidden text-center">
+      <div class="mb-6">
+        <svg class="mx-auto h-16 w-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <p class="text-green-400 text-lg mb-4">動画が完成しました！</p>
+      <a
+        id="download-link"
+        class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-xl transition-colors"
+        download
+      >
+        ダウンロード
+      </a>
+      <button
+        id="reset-btn"
+        class="block mx-auto mt-4 text-gray-400 hover:text-white text-sm underline"
+      >
+        もう一度作る
+      </button>
+    </div>
+
+    <!-- Error -->
+    <div id="error-section" class="hidden text-center">
+      <div class="mb-4">
+        <svg class="mx-auto h-16 w-16 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      </div>
+      <p class="text-red-400 text-lg mb-2">エラーが発生しました</p>
+      <p id="error-message" class="text-gray-500 text-sm mb-4"></p>
+      <button
+        id="error-reset-btn"
+        class="text-gray-400 hover:text-white text-sm underline"
+      >
+        もう一度試す
+      </button>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

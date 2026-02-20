@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Job {
+  id              String   @id @default(uuid())
+  status          String   @default("waiting") // waiting | running | done | failed
+  createdAt       DateTime @default(now())
+  finishedAt      DateTime?
+  processingTimeMs Int?
+  errorMessage    String?
+}
