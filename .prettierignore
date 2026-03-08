@@ -1,0 +1,7 @@
+node_modules/
+dist/
+build/public/
+output/
+uploads/
+*.db
+package-lock.json
